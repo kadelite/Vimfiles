@@ -1,0 +1,32 @@
+Vim's user-specific configuration file is located in the home directory: ~/.vimrc, and Vim files of current user are located inside ~/.vim/. The global configuration file is located at /etc/vimrc. Global Vim files such as defaults.vim and archlinux.vim are located inside /usr/share/vim/.
+
+For gVim, the user-specific configuration file is located at ~/.gvimrc and the global configuration file is located at /etc/gvimrc.
+
+
+Note:
+Commonly expected behavior such as syntax highlighting is enabled in defaults.vim, which is loaded when no ~/.vimrc is present. Add let skip_defaults_vim=1 to /etc/vimrc to disable loading of defaults.vim completely. [1]. Alternatively, to enable defaults.vim even when ~/.vimrc is present, see :h defaults in vim.
+gVim loads both Vim's and gVim's configuration file, while Vim only loads Vim's configuration file.
+
+
+// copy following strings in your .vimrc files
+
+:filetype plugin on
+:syntax on
+filetype indent on
+set linebreak
+set mouse=a
+set whichwrap=b,s,<,>,[,]
+set relativenumber
+set spell
+set viminfo='10,<100,:100,%,n~/.vim/.viminfo
+set guiheadroom=0
+set incsearch
+set hlsearch
+set timeoutlen=4000
+set ttimeout
+let Tlist_Compact_Format = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
+nnoremap <C-l> :TlistToggle<CR>
+
+// By default, only English language dictionaries are installed (in /usr/share/vim/vim82/spell/). More dictionaries can be found in the official repositories by searching for vim-spell. Additional dictionaries can be found in the Vim's FTP archive. Additional dictionaries can be put in the folder ~/.vim/spell/ and enabled with the command: :setlocal spell spelllang=en_us (replacing the en_us with the name of the needed dictionary).
